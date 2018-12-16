@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".MainActivity">
+
+    <RelativeLayout
+            android:id="@+id/header_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+    >
+
+        <RelativeLayout
+                android:id="@+id/picture_rl"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/picture_border_circle">
+
+        </RelativeLayout>
+
+        <TextView
+                android:layout_toRightOf="@id/picture_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="John Smith"
+                android:layout_marginLeft="36dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                android:paddingTop="8dp"
+        />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header_rl"
+            android:layout_above="@id/generate_user_btn"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+    >
+
+        <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Additional Information"
+                android:textColor="@color/colorWhite"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_alignParentTop="true"
+
+        />
+
+        <ListView
+                android:id="@+id/list_lv"
+                android:layout_below="@id/title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+        </ListView>
+
+    </RelativeLayout>
+
+
+
+    <Button
+            android:id="@+id/generate_user_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="82dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:text="Randomize"
+            android:background="@drawable/corner_btn"
+            android:textSize="12sp"/>
+
+    <Button
+            android:id="@+id/next_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="NEXT"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorWhite"/>
+
+    <Button
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:text="BACK"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorWhite"/>
+</RelativeLayout>
