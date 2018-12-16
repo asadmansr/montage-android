@@ -7,15 +7,33 @@
         android:background="@color/colorPrimary"
         tools:context=".MainActivity">
 
+
     <RelativeLayout
-            android:id="@+id/picture_rl"
+            android:id="@+id/picture2_rl"
             android:layout_width="228dp"
             android:layout_height="228dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="48dp"
             android:background="@drawable/picture_border_circle">
 
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/man_1"
+                android:layout_margin="24dp"
+                android:layout_centerHorizontal="true"/>
     </RelativeLayout>
+
+
+
+    <View
+            android:layout_width="228dp"
+            android:layout_height="228dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/overlay"/>
+
+
 
     <Button
             android:id="@+id/generate_user_btn"
