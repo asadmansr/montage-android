@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.asadmansoor.montage">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true">
         <activity
-                android:name=".MainActivity"
+                android:name=".ui.SplashActivity"
                 android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -17,26 +19,22 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-                android:name=".SplashActivity"
-                android:theme="@style/NoActionBarTheme">
-        </activity>
-        <activity android:name=".DashboardActivity"
+        <activity android:name=".ui.DashboardActivity"
                   android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".UserDetailsActivity"
+        <activity android:name=".ui.UserDetailsActivity"
                   android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".GenerateUserActivity"
+        <activity android:name=".ui.GenerateUserActivity"
                   android:theme="@style/NoActionBarTheme">
         </activity>
-        <activity android:name=".UserContactActivity"
+        <activity android:name=".ui.UserContactActivity"
                   android:theme="@style/NoActionBarTheme">
         </activity>
-        <activity android:name=".UserInformationActivity"
+        <activity android:name=".ui.UserInformationActivity"
                   android:theme="@style/NoActionBarTheme">
         </activity>
-        <activity android:name=".UserStoryActivity"
+        <activity android:name=".ui.UserStoryActivity"
                   android:theme="@style/NoActionBarTheme">
         </activity>
     </application>

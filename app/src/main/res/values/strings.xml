@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Montage</string>
+
+    <string name="btn_close">CLOSE</string>
+    <string name="btn_back">BACK</string>
+    <string name="btn_next">NEXT</string>
+    <string name="btn_save">SAVE</string>
+
 </resources>

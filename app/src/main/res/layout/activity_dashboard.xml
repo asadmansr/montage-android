@@ -5,25 +5,25 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DashboardActivity">
+        tools:context=".ui.DashboardActivity">
 
-    <ListView
-            android:id="@+id/list_lv"
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_dashboard_user"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    </ListView>
+            android:layout_height="match_parent"
+    >
+    </android.support.v7.widget.RecyclerView>
 
 
     <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/fab_dashboard_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_gravity="end|bottom"
-            android:src="@android:drawable/ic_delete"
+            app:srcCompat="@drawable/baseline_add_24"
             android:layout_margin="16dp" />
 
 </RelativeLayout>
