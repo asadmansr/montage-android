@@ -19,12 +19,6 @@ class Repository(application : Application) {
         allUsers = userDAO?.getUserList()
     }
 
-//    fun Repository(application: Application){
-//        db = UserDatabase.getUserDatabase(application.applicationContext)
-//        userDAO = db?.userDAO()
-//        allUsers = userDAO?.getUserList()
-//    }
-
     fun insert(user: User){
         DoInsertAsync(userDAO!!).execute(user)
     }

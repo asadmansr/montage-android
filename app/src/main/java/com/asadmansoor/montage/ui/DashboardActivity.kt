@@ -19,12 +19,10 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
 
         rv_dashboard_user.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-        //var users = ArrayList<UserTemp>()
         var users = ArrayList<User>()
         val adapter = UserAdapter(users)
         rv_dashboard_user.adapter = adapter
 
-        //val userViewModel = UserViewModel(application)
         val userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
         userViewModel.getUserList().observe(this, Observer { mUsers: List<User>? ->
             users = mUsers as ArrayList<User>
