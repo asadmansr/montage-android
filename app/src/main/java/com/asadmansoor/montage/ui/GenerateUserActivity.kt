@@ -1,22 +1,23 @@
-package com.asadmansoor.montage
+package com.asadmansoor.montage.ui
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_user_story.*
+import com.asadmansoor.montage.R
+import kotlinx.android.synthetic.main.activity_generate_user.*
 
-class UserStoryActivity : AppCompatActivity() {
+class GenerateUserActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_story)
+        setContentView(R.layout.activity_generate_user)
 
-        next_btn.setOnClickListener {
+        btn_generate_save.setOnClickListener {
             val intent = Intent(this, DashboardActivity::class.java)
             startActivity(intent)
         }
 
-        back_btn.setOnClickListener {
+        btn_generate_close.setOnClickListener {
             finish()
         }
     }

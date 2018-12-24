@@ -1,8 +1,9 @@
-package com.asadmansoor.montage
+package com.asadmansoor.montage.ui
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.asadmansoor.montage.R
 import kotlinx.android.synthetic.main.activity_user_information.*
 
 class UserInformationActivity : AppCompatActivity() {
