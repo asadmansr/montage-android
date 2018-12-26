@@ -28,7 +28,7 @@ class UserViewModel constructor (application: Application):  AndroidViewModel(ap
         repository?.delete(user)
     }
 
-    fun deleteAll(user: User){
+    fun deleteAllUsers(){
         repository?.deleteAllUsers()
     }
 
