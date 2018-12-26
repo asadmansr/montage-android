@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "user_table")
 data class User (
     @PrimaryKey(autoGenerate = true)
-    val uid: Int,
+    val uid: Int? = null,
     val name: String,
     val imgRes: Int,
     val colorRes: Int
