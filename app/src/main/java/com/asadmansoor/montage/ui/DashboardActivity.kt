@@ -3,15 +3,12 @@ package com.asadmansoor.montage.ui
 import android.app.Activity
 import android.app.AlertDialog
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
@@ -35,7 +32,6 @@ class DashboardActivity : AppCompatActivity() {
         rv_dashboard_user.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
         var users = ArrayList<User>()
         val adapter = UserAdapter(users) { userItem: User, userPos: Int ->
-            Log.d("userList", userPos.toString())
             deleteUser(userItem)
         }
         rv_dashboard_user.adapter = adapter
@@ -66,10 +62,6 @@ class DashboardActivity : AppCompatActivity() {
             val imgIndex = data?.getIntExtra(GenerateUserActivity.EXTRA_IMG_RES, DEFAULT)
             val colorIndex = data?.getIntExtra(GenerateUserActivity.EXTRA_COLOR_RES, DEFAULT)
 
-            Log.d("userInfo", userName)
-            Log.d("userInfo", imgIndex.toString())
-            Log.d("userInfo", colorIndex.toString())
-
             val user = User(name = userName, imgRes = imgIndex, colorRes = colorIndex)
             userViewModel.insert(user)
         }
@@ -94,12 +86,12 @@ class DashboardActivity : AppCompatActivity() {
     private fun deleteUser(user: User){
         val alertDialog: AlertDialog? = this?.let {
             val builder = AlertDialog.Builder(this)
-            builder.setMessage("Delete user?")
-            builder.setPositiveButton("OK",
+            builder.setMessage(R.string.dialog_message)
+            builder.setPositiveButton(R.string.dialog_positive,
                 DialogInterface.OnClickListener { dialog, id ->
                     userViewModel.delete(user)
                 })
-            builder.setNegativeButton("CANCEL",
+            builder.setNegativeButton(R.string.dialog_negative,
                 DialogInterface.OnClickListener { dialog, id ->
 
                 })
