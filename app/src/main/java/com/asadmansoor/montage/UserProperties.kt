@@ -1,6 +1,5 @@
 package com.asadmansoor.montage
 
-import android.graphics.Color
 
 class UserProperties {
     companion object {

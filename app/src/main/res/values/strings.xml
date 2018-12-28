@@ -6,4 +6,9 @@
     <string name="btn_next">NEXT</string>
     <string name="btn_save">SAVE</string>
 
+    <string name="dialog_message">Delete user?</string>
+    <string name="dialog_positive">OK</string>
+    <string name="dialog_negative">CANCEL</string>
+
+    <string name="label_name">NAME</string>
 </resources>

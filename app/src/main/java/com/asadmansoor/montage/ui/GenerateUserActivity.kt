@@ -4,13 +4,21 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.asadmansoor.montage.R
 import com.asadmansoor.montage.UserProperties
+import com.asadmansoor.montage.api.APIManager
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.failure
+import com.github.kittinunf.result.success
 import kotlinx.android.synthetic.main.activity_generate_user.*
 import java.util.*
 
 private const val IMG_BOUND = 14
 private const val COLOR_BOUND = 4
+
+private const val BASE_URL = "https://randomuser.me/api/"
+private const val PARAMS_NAME = "?inc=gender,name,nat&nat=au,gb,us,ca,nz"
 
 class GenerateUserActivity : AppCompatActivity() {
 
@@ -26,12 +34,17 @@ class GenerateUserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generate_user)
+        generateUserName()
         generateUserImg()
         generateColorIndex()
 
         btn_generate_img.setOnClickListener {
             generateUserImg()
             generateColorIndex()
+        }
+
+        btn_generate_name.setOnClickListener {
+            generateUserName()
         }
 
         btn_generate_save.setOnClickListener {
@@ -57,6 +70,8 @@ class GenerateUserActivity : AppCompatActivity() {
         return Random().nextInt(bound)
     }
 
+
+
     private fun saveNewUser(){
         val userName = et_user_name.text.toString()
 
@@ -73,5 +88,27 @@ class GenerateUserActivity : AppCompatActivity() {
         val intent = Intent()
         setResult(Activity.RESULT_CANCELED, intent)
         finish()
+    }
+
+
+    private fun generateUserName(){
+        et_user_name.isEnabled = false
+
+        (BASE_URL + PARAMS_NAME)
+            .httpGet()
+            .responseString { request, response, result ->
+                result.failure {
+                    val ex = it.exception
+                    et_user_name.setText("")
+                    et_user_name.isEnabled = true
+                    et_user_name.setSelection(et_user_name.text.length)
+                }
+                result.success {
+                    val data = result.get()
+                    et_user_name.setText(APIManager().parseUserName(data))
+                    et_user_name.isEnabled = true
+                    et_user_name.setSelection(et_user_name.text.length)
+                }
+            }
     }
 }
