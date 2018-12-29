@@ -1,6 +1,8 @@
 # Montage for Android
 Montage helps designers and developers test out their ideas.
 
+[![Build Status](https://travis-ci.com/asadmansr/montage-android.svg?branch=master)](https://travis-ci.com/asadmansr/montage-android)
+
 ### Introduction
 Montage is an Android application that creates and saves random user generated information for designers and developers to test their ideas. This could be the user's contact information, specific application's functionality and images.
 
