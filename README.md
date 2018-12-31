@@ -13,7 +13,9 @@ Montage is built with Kotlin along side with the Android SDK using the MVVM Andr
 - Full Name
 ```
 
+### Demo
+
+Check out the demo of what has been completed so far in the [repository's wiki](https://github.com/asadmansr/montage-android/wiki/Demo) :rocket:.
+
 ### Development
 Montage is currently under development. Feel free to keep an eye out for any ongoing work under the [repository's issue](https://github.com/asadmansr/montage-android/issues).
-
-<img src="demo.gif" width="400" height="743">
