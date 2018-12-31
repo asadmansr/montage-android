@@ -23,6 +23,7 @@
     </RelativeLayout>
 
     <View
+            android:id="@+id/vw_overlay"
             android:layout_width="228dp"
             android:layout_height="228dp"
             android:layout_centerHorizontal="true"
@@ -30,6 +31,7 @@
             android:background="@drawable/overlay"/>
 
     <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
