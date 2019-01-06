@@ -28,8 +28,12 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun generateRandomViewUser(){
-        val randomIndex = Random().nextInt(USER_INDEX)
-        iv_splash_user.setImageResource(UserProperties.imgResource[randomIndex])
+        Thread(Runnable {
+            runOnUiThread(Runnable {
+                val randomIndex = Random().nextInt(USER_INDEX)
+                iv_splash_user.setImageResource(UserProperties.imgResource[randomIndex])
+            })
+        }).start()
     }
 
     private fun startDashboardActivity(){

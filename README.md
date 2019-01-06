@@ -26,15 +26,17 @@ To run tests on Montage, you can execute the following commands from your comman
 ```bash
 # Checks build and lint
 $ ./gradlew build check
-```
+
 Test results: path_to_app/app/build/reports/lint-results.html
+```
 
 ###### Unit Test
 ```bash
 # Execute local unit tests
 $ ./gradlew test
-```
+
 Test results: path_to_app/app/build/reports/tests/ directory
+```
 
 ###### Instrumented Test
 ```bash
@@ -43,13 +45,9 @@ $ ./emulator -avd <name_of_emulator>
 
 # Execute instrumented tests
 $ ./gradlew connectedAndroidTest
-```
+
 Test results: path_to_app/app/build/reports/androidTests/connected/ directory
-
-
-
-
-
+```
 
 ### License
 This software is licensed under [MIT](https://github.com/asadmansr/montage-android/blob/master/LICENSE.md) © 2019 Asad Mansoor

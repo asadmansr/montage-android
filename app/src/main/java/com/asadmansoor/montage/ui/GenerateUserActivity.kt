@@ -8,6 +8,7 @@ import android.util.Log
 import com.asadmansoor.montage.R
 import com.asadmansoor.montage.UserProperties
 import com.asadmansoor.montage.api.APIManager
+import com.asadmansoor.montage.helper.NameHelper
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
@@ -30,6 +31,7 @@ class GenerateUserActivity : AppCompatActivity() {
         const val EXTRA_IMG_RES = "com.asadmansoor.montage.ui.EXTRA_IMG_RES"
         const val EXTRA_COLOR_RES = "com.asadmansoor.montage.ui.EXTRA_COLOR_RES"
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,20 +58,22 @@ class GenerateUserActivity : AppCompatActivity() {
         }
     }
 
+
     private fun generateUserImg(){
         imgIndex = generateRandomIndex(IMG_BOUND)
         val randomIndex = imgIndex as Int
         iv_user_image.setImageResource(UserProperties.imgResource[randomIndex])
     }
 
+
     private fun generateColorIndex(){
         colorIndex = generateRandomIndex(COLOR_BOUND)
     }
 
+
     private fun generateRandomIndex(bound: Int) : Int {
         return Random().nextInt(bound)
     }
-
 
 
     private fun saveNewUser(){
@@ -83,6 +87,7 @@ class GenerateUserActivity : AppCompatActivity() {
         setResult(Activity.RESULT_OK, intent)
         finish()
     }
+
 
     private fun cancel(){
         val intent = Intent()
@@ -99,16 +104,24 @@ class GenerateUserActivity : AppCompatActivity() {
             .responseString { request, response, result ->
                 result.failure {
                     val ex = it.exception
-                    et_user_name.setText("")
-                    et_user_name.isEnabled = true
-                    et_user_name.setSelection(et_user_name.text.length)
+                    setUserField("")
                 }
                 result.success {
                     val data = result.get()
-                    et_user_name.setText(APIManager().parseUserName(data))
-                    et_user_name.isEnabled = true
-                    et_user_name.setSelection(et_user_name.text.length)
+                    val userData = APIManager().parseUserName(data)
+                    if (NameHelper().isNameValid(userData)){
+                        setUserField(NameHelper().modifyNameFormat(userData))
+                    } else {
+                        setUserField("")
+                    }
                 }
             }
+    }
+
+
+    private fun setUserField(name : String){
+        et_user_name.setText(name)
+        et_user_name.isEnabled = true
+        et_user_name.setSelection(et_user_name.text.length)
     }
 }
