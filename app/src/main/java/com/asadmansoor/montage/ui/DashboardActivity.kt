@@ -13,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
 import com.asadmansoor.montage.R
+import com.asadmansoor.montage.UserProperties
 import com.asadmansoor.montage.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import com.asadmansoor.montage.db.entity.User
@@ -58,9 +59,9 @@ class DashboardActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == USER_REQUEST && resultCode == Activity.RESULT_OK){
-            val userName = data?.getStringExtra(GenerateUserActivity.EXTRA_NAME) as String
-            val imgIndex = data?.getIntExtra(GenerateUserActivity.EXTRA_IMG_RES, DEFAULT)
-            val colorIndex = data?.getIntExtra(GenerateUserActivity.EXTRA_COLOR_RES, DEFAULT)
+            val userName = data?.getStringExtra(UserProperties.EXTRA_NAME) as String
+            val imgIndex = data?.getIntExtra(UserProperties.EXTRA_IMG_RES, DEFAULT)
+            val colorIndex = data?.getIntExtra(UserProperties.EXTRA_COLOR_RES, DEFAULT)
 
             val user = User(name = userName, imgRes = imgIndex, colorRes = colorIndex)
             userViewModel.insert(user)

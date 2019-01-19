@@ -8,105 +8,100 @@
         tools:context=".ui.SplashActivity">
 
     <RelativeLayout
-            android:id="@+id/header_rl"
+            android:id="@+id/rl_information_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-
-    >
+            android:layout_centerHorizontal="true">
 
         <RelativeLayout
-                android:id="@+id/picture_rl"
+                android:id="@+id/rl_information_picture"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-                android:layout_marginLeft="36dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/picture_border_circle">
 
+            <ImageView
+                    android:id="@+id/iv_splash_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/man_1"
+                    android:layout_margin="8dp"
+                    android:layout_centerHorizontal="true"/>
         </RelativeLayout>
 
+        <View
+                android:id="@+id/vw_overlay"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:background="@drawable/small_overlay"/>
+
         <TextView
-                android:layout_toRightOf="@id/picture_rl"
+                android:id="@+id/tv_information_name"
+                android:layout_toRightOf="@id/rl_information_picture"
+                android:layout_toEndOf="@id/rl_information_picture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="John Smith"
-                android:layout_marginLeft="36dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:textColor="@color/colorWhite"
                 android:textSize="16sp"
-                android:paddingTop="8dp"
-        />
-
+                android:paddingTop="8dp"/>
     </RelativeLayout>
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/header_rl"
-            android:layout_above="@id/generate_user_btn"
+            android:layout_below="@id/rl_information_user"
+            android:layout_above="@id/btn_information_back"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-    >
+            android:layout_marginBottom="16dp">
 
         <TextView
-                android:id="@+id/title_tv"
+                android:id="@+id/tv_information_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Additional Information"
+                android:text="@string/label_additional_information"
                 android:textColor="@color/colorWhite"
-                android:layout_marginLeft="36dp"
-                android:layout_marginTop="8dp"
-                android:layout_alignParentTop="true"
-
-        />
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_alignParentTop="true"/>
 
         <ListView
-                android:id="@+id/list_lv"
-                android:layout_below="@id/title_tv"
+                android:id="@+id/lv_information_list"
+                android:layout_below="@id/tv_information_label"
+                android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
         </ListView>
-
     </RelativeLayout>
 
-
-
     <Button
-            android:id="@+id/generate_user_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="82dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginRight="64dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="64dp"
-            android:text="Randomize"
-            android:background="@drawable/corner_btn"
-            android:textSize="12sp"/>
-
-    <Button
-            android:id="@+id/next_btn"
+            android:id="@+id/btn_information_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="NEXT"
+            android:text="@string/btn_save"
             android:layout_marginBottom="8dp"
             android:background="@android:color/transparent"
             android:textColor="@color/colorWhite"/>
 
     <Button
-            android:id="@+id/back_btn"
+            android:id="@+id/btn_information_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:text="BACK"
+            android:text="@string/btn_back"
             android:layout_marginBottom="8dp"
             android:background="@android:color/transparent"
             android:textColor="@color/colorWhite"/>
