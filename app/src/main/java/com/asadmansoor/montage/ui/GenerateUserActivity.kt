@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.asadmansoor.montage.R
 import com.asadmansoor.montage.UserProperties
 import com.asadmansoor.montage.api.APIManager
@@ -20,25 +19,19 @@ private const val COLOR_BOUND = 4
 
 private const val BASE_URL = "https://randomuser.me/api/"
 private const val PARAMS_NAME = "?inc=gender,name,nat&nat=au,gb,us,ca,nz"
+private const val DEFAULT_INDEX = 0
 
 class GenerateUserActivity : AppCompatActivity() {
 
+    private var userName: String? = null
     private var imgIndex: Int? = null
     private var colorIndex: Int? = null
-
-    companion object {
-        const val EXTRA_NAME = "com.asadmansoor.montage.ui.EXTRA_NAME"
-        const val EXTRA_IMG_RES = "com.asadmansoor.montage.ui.EXTRA_IMG_RES"
-        const val EXTRA_COLOR_RES = "com.asadmansoor.montage.ui.EXTRA_COLOR_RES"
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generate_user)
-        generateUserName()
-        generateUserImg()
-        generateColorIndex()
+        setUserProfile()
 
         btn_generate_img.setOnClickListener {
             generateUserImg()
@@ -55,6 +48,23 @@ class GenerateUserActivity : AppCompatActivity() {
 
         btn_generate_close.setOnClickListener {
             cancel()
+        }
+    }
+
+
+    private fun setUserProfile(){
+        val intent = intent
+        userName = intent.getStringExtra(UserProperties.EXTRA_NAME)
+        imgIndex = intent.getIntExtra(UserProperties.EXTRA_IMG_RES, DEFAULT_INDEX)
+        colorIndex = intent.getIntExtra(UserProperties.EXTRA_COLOR_RES, DEFAULT_INDEX)
+
+        if (userName == null){
+            generateUserName()
+            generateUserImg()
+            generateColorIndex()
+        } else {
+            iv_user_image.setImageResource(UserProperties.imgResource[imgIndex!!])
+            setUserField(userName!!)
         }
     }
 
@@ -77,14 +87,15 @@ class GenerateUserActivity : AppCompatActivity() {
 
 
     private fun saveNewUser(){
-        val userName = et_user_name.text.toString()
+        userName = et_user_name.text.toString()
 
-        val intent = Intent()
-        intent.putExtra(EXTRA_NAME, userName)
-        intent.putExtra(EXTRA_IMG_RES, imgIndex)
-        intent.putExtra(EXTRA_COLOR_RES, colorIndex)
+        val intent = Intent(this, UserInformationActivity::class.java)
+        intent.putExtra(UserProperties.EXTRA_NAME, userName)
+        intent.putExtra(UserProperties.EXTRA_IMG_RES, imgIndex)
+        intent.putExtra(UserProperties.EXTRA_COLOR_RES, colorIndex)
 
-        setResult(Activity.RESULT_OK, intent)
+        intent.flags = Intent.FLAG_ACTIVITY_FORWARD_RESULT
+        startActivity(intent)
         finish()
     }
 
@@ -101,9 +112,8 @@ class GenerateUserActivity : AppCompatActivity() {
 
         (BASE_URL + PARAMS_NAME)
             .httpGet()
-            .responseString { request, response, result ->
+            .responseString { _, _, result ->
                 result.failure {
-                    val ex = it.exception
                     setUserField("")
                 }
                 result.success {

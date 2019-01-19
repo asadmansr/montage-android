@@ -10,5 +10,9 @@ class UserProperties {
         val colorResource = arrayOf(
             "#4285F4", "#DB4437", "#F4B400","#0F9D58"
         )
+
+        const val EXTRA_NAME = "com.asadmansoor.montage.ui.EXTRA_NAME"
+        const val EXTRA_IMG_RES = "com.asadmansoor.montage.ui.EXTRA_IMG_RES"
+        const val EXTRA_COLOR_RES = "com.asadmansoor.montage.ui.EXTRA_COLOR_RES"
     }
 }

@@ -11,4 +11,7 @@
     <string name="dialog_negative">CANCEL</string>
 
     <string name="label_name">NAME</string>
+    <string name="label_email">EMAIL</string>
+
+    <string name="label_additional_information">Additional Information</string>
 </resources>
