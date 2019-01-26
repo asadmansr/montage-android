@@ -2,7 +2,7 @@ package com.asadmansoor.montage.helper
 
 import java.util.regex.Pattern
 
-class NameHelper() {
+class UserHelper {
 
     private val ALPHABET_PATTERN =  Pattern.compile("^[a-z A-Z]+")
 
@@ -38,6 +38,12 @@ class NameHelper() {
 
         return true
     }
+
+
+    fun isEmailValid(email: String) : Boolean {
+        return (email.contains("@"))
+    }
+
 
     fun modifyNameFormat(name: String) : String {
         var outputString = ""

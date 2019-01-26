@@ -7,7 +7,7 @@ import android.os.Bundle
 import com.asadmansoor.montage.R
 import com.asadmansoor.montage.UserProperties
 import com.asadmansoor.montage.api.APIManager
-import com.asadmansoor.montage.helper.NameHelper
+import com.asadmansoor.montage.helper.UserHelper
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.failure
 import com.github.kittinunf.result.success
@@ -18,12 +18,13 @@ private const val IMG_BOUND = 14
 private const val COLOR_BOUND = 4
 
 private const val BASE_URL = "https://randomuser.me/api/"
-private const val PARAMS_NAME = "?inc=gender,name,nat&nat=au,gb,us,ca,nz"
+private const val PARAMS_NAME = "?inc=gender,email,name,nat&nat=au,gb,us,ca,nz"
 private const val DEFAULT_INDEX = 0
 
 class GenerateUserActivity : AppCompatActivity() {
 
     private var userName: String? = null
+    private var userEmail: String? = null
     private var imgIndex: Int? = null
     private var colorIndex: Int? = null
 
@@ -55,6 +56,7 @@ class GenerateUserActivity : AppCompatActivity() {
     private fun setUserProfile(){
         val intent = intent
         userName = intent.getStringExtra(UserProperties.EXTRA_NAME)
+        userEmail = intent.getStringExtra(UserProperties.EXTRA_EMAIL)
         imgIndex = intent.getIntExtra(UserProperties.EXTRA_IMG_RES, DEFAULT_INDEX)
         colorIndex = intent.getIntExtra(UserProperties.EXTRA_COLOR_RES, DEFAULT_INDEX)
 
@@ -64,7 +66,8 @@ class GenerateUserActivity : AppCompatActivity() {
             generateColorIndex()
         } else {
             iv_user_image.setImageResource(UserProperties.imgResource[imgIndex!!])
-            setUserField(userName!!)
+            setNameField(userName!!)
+            setEmailField(userEmail!!)
         }
     }
 
@@ -88,9 +91,11 @@ class GenerateUserActivity : AppCompatActivity() {
 
     private fun saveNewUser(){
         userName = et_user_name.text.toString()
+        userEmail = et_user_email.text.toString()
 
         val intent = Intent(this, UserInformationActivity::class.java)
         intent.putExtra(UserProperties.EXTRA_NAME, userName)
+        intent.putExtra(UserProperties.EXTRA_EMAIL, userEmail)
         intent.putExtra(UserProperties.EXTRA_IMG_RES, imgIndex)
         intent.putExtra(UserProperties.EXTRA_COLOR_RES, colorIndex)
 
@@ -109,29 +114,40 @@ class GenerateUserActivity : AppCompatActivity() {
 
     private fun generateUserName(){
         et_user_name.isEnabled = false
+        et_user_email.isEnabled = false
 
         (BASE_URL + PARAMS_NAME)
             .httpGet()
             .responseString { _, _, result ->
                 result.failure {
-                    setUserField("")
+                    setNameField("")
+                    setEmailField("")
                 }
                 result.success {
                     val data = result.get()
                     val userData = APIManager().parseUserName(data)
-                    if (NameHelper().isNameValid(userData)){
-                        setUserField(NameHelper().modifyNameFormat(userData))
+
+                    if (UserHelper().isNameValid(userData.name) && UserHelper().isEmailValid(userData.email)){
+                        setNameField(UserHelper().modifyNameFormat(userData.name))
+                        setEmailField(userData.email)
                     } else {
-                        setUserField("")
+                        setNameField("")
+                        setEmailField("")
                     }
                 }
             }
     }
 
 
-    private fun setUserField(name : String){
+    private fun setNameField(name : String){
         et_user_name.setText(name)
         et_user_name.isEnabled = true
         et_user_name.setSelection(et_user_name.text.length)
+    }
+
+    private fun setEmailField(email : String){
+        et_user_email.setText(email)
+        et_user_email.isEnabled = true
+        et_user_email.setSelection(0)
     }
 }
