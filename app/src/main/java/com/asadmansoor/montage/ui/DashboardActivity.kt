@@ -60,10 +60,11 @@ class DashboardActivity : AppCompatActivity() {
 
         if (requestCode == USER_REQUEST && resultCode == Activity.RESULT_OK){
             val userName = data?.getStringExtra(UserProperties.EXTRA_NAME) as String
+            val userEmail = data?.getStringExtra(UserProperties.EXTRA_EMAIL) as String
             val imgIndex = data?.getIntExtra(UserProperties.EXTRA_IMG_RES, DEFAULT)
             val colorIndex = data?.getIntExtra(UserProperties.EXTRA_COLOR_RES, DEFAULT)
 
-            val user = User(name = userName, imgRes = imgIndex, colorRes = colorIndex)
+            val user = User(name = userName, email = userEmail, imgRes = imgIndex, colorRes = colorIndex)
             userViewModel.insert(user)
         }
     }

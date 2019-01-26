@@ -24,6 +24,7 @@ class UserInformationActivity : AppCompatActivity() {
 
         val intent = intent
         val userName = intent.getStringExtra(UserProperties.EXTRA_NAME)
+        val userEmail = intent.getStringExtra(UserProperties.EXTRA_EMAIL)
         val imgIndex = intent.getIntExtra(UserProperties.EXTRA_IMG_RES, DEFAULT_INDEX)
         val colorIndex = intent.getIntExtra(UserProperties.EXTRA_COLOR_RES, DEFAULT_INDEX)
         setupUserHeader(userName, imgIndex)
@@ -35,6 +36,7 @@ class UserInformationActivity : AppCompatActivity() {
         btn_information_next.setOnClickListener {
             val dashboardIntent = Intent()
             dashboardIntent.putExtra(UserProperties.EXTRA_NAME, userName)
+            dashboardIntent.putExtra(UserProperties.EXTRA_EMAIL, userEmail)
             dashboardIntent.putExtra(UserProperties.EXTRA_IMG_RES, imgIndex)
             dashboardIntent.putExtra(UserProperties.EXTRA_COLOR_RES, colorIndex)
             setResult(Activity.RESULT_OK, dashboardIntent)
@@ -44,6 +46,7 @@ class UserInformationActivity : AppCompatActivity() {
         btn_information_back.setOnClickListener {
             val generateUserIntent = Intent(this, GenerateUserActivity::class.java)
             generateUserIntent.putExtra(UserProperties.EXTRA_NAME, userName)
+            generateUserIntent.putExtra(UserProperties.EXTRA_EMAIL, userEmail)
             generateUserIntent.putExtra(UserProperties.EXTRA_IMG_RES, imgIndex)
             generateUserIntent.putExtra(UserProperties.EXTRA_COLOR_RES, colorIndex)
             generateUserIntent.flags = Intent.FLAG_ACTIVITY_FORWARD_RESULT

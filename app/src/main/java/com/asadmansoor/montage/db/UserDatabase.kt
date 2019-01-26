@@ -7,7 +7,7 @@ import android.content.Context
 import com.asadmansoor.montage.db.entity.User
 import com.asadmansoor.montage.db.dao.UserDAO
 
-@Database(entities = [User::class], version = 2)
+@Database(entities = [User::class], version = 3)
 abstract class UserDatabase: RoomDatabase(){
 
     abstract fun userDAO(): UserDAO

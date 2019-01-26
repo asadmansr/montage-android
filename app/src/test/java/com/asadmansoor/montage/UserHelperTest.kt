@@ -1,21 +1,21 @@
 package com.asadmansoor.montage
 
-import com.asadmansoor.montage.helper.NameHelper
+import com.asadmansoor.montage.helper.UserHelper
 import org.junit.Test
 import org.junit.Assert.*
 
 /**
  * Local unit test, which will execute on the development machine (host).
  *
- * class: NameHelper.kt
+ * class: UserHelper.kt
  * methods:
  * - isNameValid(name): validates whether full name is generated
  * - modifyNameFormat(name): validates name is correctly capitalized
  */
 
-class NameHelperTest {
+class UserHelperTest {
 
-    private var nameHelper = NameHelper()
+    private var nameHelper = UserHelper()
 
     @Test
     fun isNameValid_CorrectNameSimple_ReturnsTrue() {
@@ -78,7 +78,22 @@ class NameHelperTest {
     }
 
     @Test
-    fun modifyNameFormat_CorrectMixNameLast_ReturnsTrue() {
-        assertEquals(nameHelper.modifyNameFormat("john Smith"), "John Smith")
+    fun isEmailValid_EmptyString_ReturnsFalse() {
+        assertFalse(nameHelper.isEmailValid(""))
+    }
+
+    @Test
+    fun isEmailValid_InvalidString_ReturnsFalse() {
+        assertFalse(nameHelper.isEmailValid("john.example.com"))
+    }
+
+    @Test
+    fun isEmailValid_CorrectUpperString_ReturnsTrue() {
+        assertTrue(nameHelper.isEmailValid("JOHN@EXAMPLE.COM"))
+    }
+
+    @Test
+    fun isEmailValid_CorrectString_ReturnsTrue() {
+        assertTrue(nameHelper.isEmailValid("john@example.com"))
     }
 }

@@ -12,6 +12,7 @@ class UserProperties {
         )
 
         const val EXTRA_NAME = "com.asadmansoor.montage.ui.EXTRA_NAME"
+        const val EXTRA_EMAIL = "com.asadmansoor.montage.ui.EXTRA_EMAIL"
         const val EXTRA_IMG_RES = "com.asadmansoor.montage.ui.EXTRA_IMG_RES"
         const val EXTRA_COLOR_RES = "com.asadmansoor.montage.ui.EXTRA_COLOR_RES"
     }
