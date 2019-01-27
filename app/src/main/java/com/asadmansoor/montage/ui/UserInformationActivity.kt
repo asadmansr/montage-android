@@ -70,6 +70,38 @@ class UserInformationActivity : AppCompatActivity() {
     }
 
 
+    private fun getSpecificData(pos: Int){
+        (BASE_URL + PARAMS_NAME)
+        .httpGet()
+        .responseString { _, _, result ->
+            result.failure {
+
+            }
+            result.success {
+                val data = result.get()
+                val userInfoData = APIManager().parseUserInformation(data)
+                populateSpecificData(pos, userInfoData)
+            }
+        }
+    }
+
+    
+    private fun populateSpecificData(pos: Int, userInfoData: UserInfoAPI){
+        when (pos) {
+            0 -> infoList[0] = userInfoData.username
+            1 -> infoList[1] = userInfoData.password
+            2 -> infoList[2] = userInfoData.phone
+            3 ->
+            {
+                infoList[3] = userInfoData.city
+                infoList[4] = userInfoData.state
+                infoList[5] = userInfoData.timezone
+            }
+        }
+        adapter!!.notifyDataSetChanged()
+    }
+
+
     private fun populateInfoData(infoAPI: UserInfoAPI){
         infoList[0] = infoAPI.username
         infoList[1] = infoAPI.password
@@ -107,5 +139,21 @@ class UserInformationActivity : AppCompatActivity() {
         dashboardIntent.putExtra(UserProperties.EXTRA_COLOR_RES, colorIndex)
         setResult(Activity.RESULT_OK, dashboardIntent)
         finish()
+    }
+
+    fun randomizeUsername(){
+        getSpecificData(0)
+    }
+
+    fun randomizePassword(){
+        getSpecificData(1)
+    }
+
+    fun randomizePhone(){
+        getSpecificData(2)
+    }
+
+    fun randomizeLocation(){
+        getSpecificData(3)
     }
 }
