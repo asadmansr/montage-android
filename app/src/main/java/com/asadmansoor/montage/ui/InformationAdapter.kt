@@ -10,8 +10,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.asadmansoor.montage.R
+import com.asadmansoor.montage.model.UserInfoAPI
 
-class InformationAdapter (var context: Context, var infoList: ArrayList<String>) : BaseAdapter() {
+class InformationAdapter (var context: Context, var infoList: ArrayList<String>, val dataList: ArrayList<String>) : BaseAdapter() {
 
     private var mObjects : ArrayList<String> = ArrayList<String>()
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -39,6 +40,11 @@ class InformationAdapter (var context: Context, var infoList: ArrayList<String>)
         val infoRandom = rowView.findViewById(R.id.btn_generate_name) as Button
 
         infoTitle.text = infoList[position]
+        infoField.setText(dataList[position])
+
+        if (position > 3) {
+            infoRandom.visibility = View.GONE
+        }
 
         return rowView
     }

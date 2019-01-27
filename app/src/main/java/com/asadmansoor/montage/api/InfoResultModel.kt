@@ -2,7 +2,7 @@ package com.asadmansoor.montage.api
 
 import com.google.gson.annotations.SerializedName
 
-data class ResultsModel (
+data class InfoResultModel (
     @SerializedName("results")
-    var results : List<UserModel>
+    var results : List<InfoModel>
 )
