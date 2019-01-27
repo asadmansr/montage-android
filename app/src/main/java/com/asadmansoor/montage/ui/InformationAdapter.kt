@@ -1,7 +1,6 @@
 package com.asadmansoor.montage.ui
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.asadmansoor.montage.R
-import com.asadmansoor.montage.model.UserInfoAPI
 
 class InformationAdapter (var context: Context, var infoList: ArrayList<String>, val dataList: ArrayList<String>) : BaseAdapter() {
 
@@ -44,6 +42,15 @@ class InformationAdapter (var context: Context, var infoList: ArrayList<String>,
 
         if (position > 3) {
             infoRandom.visibility = View.GONE
+        }
+
+        infoRandom.setOnClickListener {
+            when (position) {
+                0 -> (context as UserInformationActivity).randomizeUsername()
+                1 -> (context as UserInformationActivity).randomizePassword()
+                2 -> (context as UserInformationActivity).randomizePhone()
+                3 -> (context as UserInformationActivity).randomizeLocation()
+            }
         }
 
         return rowView
