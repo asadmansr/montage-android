@@ -85,7 +85,7 @@ class UserInformationActivity : AppCompatActivity() {
         }
     }
 
-    
+
     private fun populateSpecificData(pos: Int, userInfoData: UserInfoAPI){
         when (pos) {
             0 -> infoList[0] = userInfoData.username

@@ -33,7 +33,8 @@ class DashboardActivity : AppCompatActivity() {
         rv_dashboard_user.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
         var users = ArrayList<User>()
         val adapter = UserAdapter(users) { userItem: User, userPos: Int ->
-            deleteUser(userItem)
+            //deleteUser(userItem)
+            startUserDetailActivity()
         }
         rv_dashboard_user.adapter = adapter
 
@@ -53,6 +54,11 @@ class DashboardActivity : AppCompatActivity() {
     private fun startGenerateUserActivity(){
         val intent = Intent(this, GenerateUserActivity::class.java)
         startActivityForResult(intent, USER_REQUEST)
+    }
+
+    private fun startUserDetailActivity(){
+        val intent = Intent(this, UserDetailsActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
