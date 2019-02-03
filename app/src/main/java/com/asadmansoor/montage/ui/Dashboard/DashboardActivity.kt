@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.ui
+package com.asadmansoor.montage.ui.Dashboard
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -17,6 +17,8 @@ import com.asadmansoor.montage.UserProperties
 import com.asadmansoor.montage.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import com.asadmansoor.montage.db.entity.User
+import com.asadmansoor.montage.ui.UserGeneration.GenerateUserActivity
+import com.asadmansoor.montage.ui.UserDetail.UserDetailActivity
 
 
 private const val DEFAULT = 0
@@ -32,9 +34,8 @@ class DashboardActivity : AppCompatActivity() {
 
         rv_dashboard_user.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
         var users = ArrayList<User>()
-        val adapter = UserAdapter(users) { userItem: User, userPos: Int ->
-            //deleteUser(userItem)
-            startUserDetailActivity()
+        val adapter = DashboardAdapter(users) { userItem: User, userPos: Int ->
+            startUserDetailActivity(userItem)
         }
         rv_dashboard_user.adapter = adapter
 
@@ -51,35 +52,69 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
+
     private fun startGenerateUserActivity(){
         val intent = Intent(this, GenerateUserActivity::class.java)
         startActivityForResult(intent, USER_REQUEST)
     }
 
-    private fun startUserDetailActivity(){
-        val intent = Intent(this, UserDetailsActivity::class.java)
+
+    private fun startUserDetailActivity(userItem: User){
+        val arrExtra = generateUserArray(userItem)
+        val imgExtra = userItem.imgRes
+        val colorExtra = userItem.colorRes
+
+        val intent = Intent(this, UserDetailActivity::class.java)
+        intent.putExtra(UserProperties.EXTRA_USER_ARR, arrExtra)
+        intent.putExtra(UserProperties.EXTRA_IMG_RES, imgExtra)
+        intent.putExtra(UserProperties.EXTRA_COLOR_RES, colorExtra)
         startActivity(intent)
     }
+
+
+    private fun generateUserArray(userItem: User): ArrayList<String>{
+        val userArr = ArrayList<String>()
+        userArr.add(userItem.name)
+        userArr.add(userItem.email)
+        userArr.add(userItem.username)
+        userArr.add(userItem.password)
+        userArr.add(userItem.phone)
+        userArr.add(userItem.city)
+        userArr.add(userItem.state)
+        userArr.add(userItem.timezone)
+        return userArr
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == USER_REQUEST && resultCode == Activity.RESULT_OK){
-            val userName = data?.getStringExtra(UserProperties.EXTRA_NAME) as String
-            val userEmail = data?.getStringExtra(UserProperties.EXTRA_EMAIL) as String
-            val imgIndex = data?.getIntExtra(UserProperties.EXTRA_IMG_RES, DEFAULT)
-            val colorIndex = data?.getIntExtra(UserProperties.EXTRA_COLOR_RES, DEFAULT)
+            val name = data?.getStringExtra(UserProperties.EXTRA_NAME) as String
+            val email = data.getStringExtra(UserProperties.EXTRA_EMAIL) as String
+            val imgIndex = data.getIntExtra(UserProperties.EXTRA_IMG_RES, DEFAULT)
+            val colorIndex = data.getIntExtra(UserProperties.EXTRA_COLOR_RES, DEFAULT)
 
-            val user = User(name = userName, email = userEmail, imgRes = imgIndex, colorRes = colorIndex)
+            val username = data.getStringExtra(UserProperties.EXTRA_USERNAME) as String
+            val password = data.getStringExtra(UserProperties.EXTRA_PASSWORD) as String
+            val phone = data.getStringExtra(UserProperties.EXTRA_PHONE) as String
+            val city = data.getStringExtra(UserProperties.EXTRA_CITY) as String
+            val state = data.getStringExtra(UserProperties.EXTRA_STATE) as String
+            val timezone = data.getStringExtra(UserProperties.EXTRA_TIMEZONE) as String
+
+            val user = User(name = name, email = email, imgRes = imgIndex, colorRes = colorIndex,
+                username = username, password = password, phone = phone, city = city, state = state, timezone = timezone)
             userViewModel.insert(user)
         }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.toolbar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -90,6 +125,7 @@ class DashboardActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 
     private fun deleteUser(user: User){
         val alertDialog: AlertDialog? = this?.let {

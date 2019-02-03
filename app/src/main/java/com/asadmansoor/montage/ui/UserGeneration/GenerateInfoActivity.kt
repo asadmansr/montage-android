@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.ui
+package com.asadmansoor.montage.ui.UserGeneration
 
 import android.app.Activity
 import android.content.Intent
@@ -23,8 +23,8 @@ private const val PARAMS_NAME = "?inc=login,phone,location"
 class UserInformationActivity : AppCompatActivity() {
 
     private var listView : ListView? = null
-    private var adapter : InformationAdapter? = null
-    private val labelList = arrayListOf<String>("Username","Password","Phone","City","State","Timezone")
+    private var adapter : GenerateInfoAdapter? = null
+    private val labelList = arrayListOf("Username","Password","Phone","City","State","Timezone")
     private var infoList = arrayListOf("","","","","","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,7 @@ class UserInformationActivity : AppCompatActivity() {
         setupUserHeader(userName, imgIndex)
 
         listView = findViewById<ListView>(R.id.lv_information_list)
-        adapter = InformationAdapter(this, labelList, infoList)
+        adapter = GenerateInfoAdapter(this, labelList, infoList)
         listView!!.adapter = adapter
 
         getUserInformation()
@@ -137,6 +137,14 @@ class UserInformationActivity : AppCompatActivity() {
         dashboardIntent.putExtra(UserProperties.EXTRA_EMAIL, userEmail)
         dashboardIntent.putExtra(UserProperties.EXTRA_IMG_RES, imgIndex)
         dashboardIntent.putExtra(UserProperties.EXTRA_COLOR_RES, colorIndex)
+
+        dashboardIntent.putExtra(UserProperties.EXTRA_USERNAME, infoList[0])
+        dashboardIntent.putExtra(UserProperties.EXTRA_PASSWORD, infoList[1])
+        dashboardIntent.putExtra(UserProperties.EXTRA_PHONE, infoList[2])
+        dashboardIntent.putExtra(UserProperties.EXTRA_CITY, infoList[3])
+        dashboardIntent.putExtra(UserProperties.EXTRA_STATE, infoList[4])
+        dashboardIntent.putExtra(UserProperties.EXTRA_TIMEZONE, infoList[5])
+
         setResult(Activity.RESULT_OK, dashboardIntent)
         finish()
     }

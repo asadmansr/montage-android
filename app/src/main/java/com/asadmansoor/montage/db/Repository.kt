@@ -1,9 +1,8 @@
-package com.asadmansoor.montage
+package com.asadmansoor.montage.db
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
 import android.os.AsyncTask
-import com.asadmansoor.montage.db.UserDatabase
 import com.asadmansoor.montage.db.dao.UserDAO
 import com.asadmansoor.montage.db.entity.User
 

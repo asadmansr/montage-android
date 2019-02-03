@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.ui
+package com.asadmansoor.montage.ui.UserGeneration
 
 import android.app.Activity
 import android.content.Intent
@@ -48,7 +48,7 @@ class GenerateUserActivity : AppCompatActivity() {
         }
 
         btn_generate_close.setOnClickListener {
-            cancel()
+            cancelGeneration()
         }
     }
 
@@ -105,7 +105,7 @@ class GenerateUserActivity : AppCompatActivity() {
     }
 
 
-    private fun cancel(){
+    private fun cancelGeneration(){
         val intent = Intent()
         setResult(Activity.RESULT_CANCELED, intent)
         finish()

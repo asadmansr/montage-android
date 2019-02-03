@@ -11,5 +11,11 @@ data class User (
     val name: String,
     val email: String,
     val imgRes: Int,
-    val colorRes: Int
+    val colorRes: Int,
+    val username: String,
+    val password: String,
+    val phone: String,
+    val city: String,
+    val state: String,
+    val timezone: String
 )

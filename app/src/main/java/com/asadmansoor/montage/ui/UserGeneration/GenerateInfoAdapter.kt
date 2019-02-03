@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.ui
+package com.asadmansoor.montage.ui.UserGeneration
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.asadmansoor.montage.R
 
-class InformationAdapter (var context: Context, var infoList: ArrayList<String>, val dataList: ArrayList<String>) : BaseAdapter() {
+class GenerateInfoAdapter (var context: Context, var infoList: ArrayList<String>, val dataList: ArrayList<String>) : BaseAdapter() {
 
     private var mObjects : ArrayList<String> = ArrayList<String>()
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
