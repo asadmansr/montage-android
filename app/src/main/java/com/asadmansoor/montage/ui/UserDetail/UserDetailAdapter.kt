@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.ui
+package com.asadmansoor.montage.ui.UserDetail
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.asadmansoor.montage.R
 
-class DetailAdapter (var context: Context, var titleList: ArrayList<String>, val contentList: ArrayList<String>) : BaseAdapter() {
+class UserDetailAdapter (var context: Context, var titleList: ArrayList<String>, val contentList: ArrayList<String>) : BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 

@@ -1,7 +1,5 @@
-package com.asadmansoor.montage.ui
+package com.asadmansoor.montage.ui.Dashboard
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.support.v7.widget.RecyclerView
@@ -16,12 +14,7 @@ import com.asadmansoor.montage.UserProperties
 import com.asadmansoor.montage.db.entity.User
 
 
-class UserAdapter (var userList: ArrayList<User>, val clickListener: (User, Int) -> Unit) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
-
-    private var mObjects : ArrayList<User> = ArrayList<User>()
-    init {
-        mObjects = userList
-    }
+class DashboardAdapter (var userList: ArrayList<User>, val clickListener: (User, Int) -> Unit) : RecyclerView.Adapter<DashboardAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val v = LayoutInflater.from(p0?.context).inflate(R.layout.layout_list_user, p0, false)

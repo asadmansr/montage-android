@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.ui
+package com.asadmansoor.montage.ui.Dashboard
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
