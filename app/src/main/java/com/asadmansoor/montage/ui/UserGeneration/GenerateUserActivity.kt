@@ -2,6 +2,8 @@ package com.asadmansoor.montage.ui.UserGeneration
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.asadmansoor.montage.R
@@ -76,6 +78,9 @@ class GenerateUserActivity : AppCompatActivity() {
         imgIndex = generateRandomIndex(IMG_BOUND)
         val randomIndex = imgIndex as Int
         iv_user_image.setImageResource(UserProperties.imgResource[randomIndex])
+
+        val userImageRef = picture_rl.background as GradientDrawable
+        userImageRef.setColor(Color.parseColor(UserProperties.colorPrimary))
     }
 
 

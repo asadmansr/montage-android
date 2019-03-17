@@ -31,14 +31,6 @@
                     android:layout_centerHorizontal="true"/>
         </RelativeLayout>
 
-        <View
-                android:id="@+id/vw_overlay"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:background="@drawable/small_overlay"/>
 
         <TextView
                 android:id="@+id/tv_information_name"

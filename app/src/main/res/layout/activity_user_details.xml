@@ -24,14 +24,6 @@
                 android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
-    <View
-            android:id="@+id/vw"
-            android:layout_width="124dp"
-            android:layout_height="124dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="36dp"
-            android:background="@drawable/overlay"/>
-
     <ListView
             android:id="@+id/lv_user_details"
             android:layout_below="@id/picture_rl"

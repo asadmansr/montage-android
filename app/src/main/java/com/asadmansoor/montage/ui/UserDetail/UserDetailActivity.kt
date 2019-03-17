@@ -37,10 +37,7 @@ class UserDetailActivity : AppCompatActivity() {
 
         val userImageRef = picture_rl.background as GradientDrawable
         userImageRef.setColor(Color.parseColor(UserProperties.colorResource[colorRes]))
-
-        val userLayoutRef = vw.background as GradientDrawable
-        userLayoutRef.setStroke( 52,Color.parseColor(UserProperties.colorResource[colorRes]))
-    }
+}
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
