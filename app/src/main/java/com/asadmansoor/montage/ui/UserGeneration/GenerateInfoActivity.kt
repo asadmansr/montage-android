@@ -2,6 +2,8 @@ package com.asadmansoor.montage.ui.UserGeneration
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
@@ -116,6 +118,9 @@ class UserInformationActivity : AppCompatActivity() {
     private fun setupUserHeader(userName: String, imgIndex: Int){
         iv_splash_user.setImageResource(UserProperties.imgResource[imgIndex])
         tv_information_name.text = userName
+
+        val userImageRef = rl_information_picture.background as GradientDrawable
+        userImageRef.setColor(Color.parseColor(UserProperties.colorPrimary))
     }
 
 

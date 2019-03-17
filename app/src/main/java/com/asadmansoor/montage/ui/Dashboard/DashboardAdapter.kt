@@ -32,10 +32,7 @@ class DashboardAdapter (var userList: ArrayList<User>, val clickListener: (User,
         p0.userImage.setImageResource(UserProperties.imgResource[user.imgRes])
 
         val userImageRef = p0.userImage.background as GradientDrawable
-        val userLayoutRef = p0.userLayout.background as GradientDrawable
-
         userImageRef.setColor(Color.parseColor(UserProperties.colorResource[user.colorRes]))
-        userLayoutRef.setStroke( 28,Color.parseColor(UserProperties.colorResource[user.colorRes]))
 
         p0.viewContainer.setOnClickListener { clickListener(user, p1) }
     }
@@ -47,7 +44,6 @@ class DashboardAdapter (var userList: ArrayList<User>, val clickListener: (User,
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val viewContainer = itemView.findViewById(R.id.rl_container) as RelativeLayout
-        val userLayout = itemView.findViewById(R.id.vw_recycler_user) as View
         val userImage = itemView.findViewById(R.id.iv_recycler_user) as ImageView
         val userName = itemView.findViewById(R.id.tv_recycler_name) as TextView
     }
