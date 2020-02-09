@@ -1,7 +1,8 @@
 package com.asadmansoor.montage.db.dao
 
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.*
+
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.asadmansoor.montage.db.entity.User
 
 

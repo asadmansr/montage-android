@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.ui.UserDetail
+package com.asadmansoor.montage.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

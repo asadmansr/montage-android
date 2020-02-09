@@ -1,8 +1,8 @@
-package com.asadmansoor.montage.ui.Dashboard
+package com.asadmansoor.montage.view.Dashboard
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.asadmansoor.montage.*
 import kotlinx.android.synthetic.main.activity_splash.*
 import java.util.*
