@@ -1,8 +1,9 @@
-package com.asadmansoor.montage.db
+package com.asadmansoor.montage.db.repository
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
 import android.os.AsyncTask
+import androidx.lifecycle.LiveData
+import com.asadmansoor.montage.db.database.UserDatabase
 import com.asadmansoor.montage.db.dao.UserDAO
 import com.asadmansoor.montage.db.entity.User
 
@@ -13,7 +14,8 @@ class Repository(application : Application) {
     private var allUsers: LiveData<List<User>>? = null
 
     init {
-        db = UserDatabase.getUserDatabase(application.applicationContext)
+        db =
+            UserDatabase.getUserDatabase(application.applicationContext)
         userDAO = db?.userDAO()
         allUsers = userDAO?.getUserList()
     }

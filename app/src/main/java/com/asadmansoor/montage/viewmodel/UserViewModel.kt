@@ -1,9 +1,9 @@
 package com.asadmansoor.montage.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.LiveData
-import com.asadmansoor.montage.db.Repository
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import com.asadmansoor.montage.db.repository.Repository
 import com.asadmansoor.montage.db.entity.User
 
 

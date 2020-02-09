@@ -1,24 +1,26 @@
-package com.asadmansoor.montage.ui.Dashboard
+package com.asadmansoor.montage.view.Dashboard
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.asadmansoor.montage.R
 import com.asadmansoor.montage.UserProperties
+import com.asadmansoor.montage.adapter.DashboardAdapter
 import com.asadmansoor.montage.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import com.asadmansoor.montage.db.entity.User
-import com.asadmansoor.montage.ui.UserGeneration.GenerateUserActivity
-import com.asadmansoor.montage.ui.UserDetail.UserDetailActivity
+import com.asadmansoor.montage.view.UserGeneration.GenerateUserActivity
+import com.asadmansoor.montage.view.UserDetail.UserDetailActivity
 
 
 private const val DEFAULT = 0
@@ -32,12 +34,15 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        rv_dashboard_user.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_dashboard_user)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+
         var users = ArrayList<User>()
-        val adapter = DashboardAdapter(users) { userItem: User, userPos: Int ->
-            startUserDetailActivity(userItem)
-        }
-        rv_dashboard_user.adapter = adapter
+        val adapter =
+            DashboardAdapter(users) { userItem: User, userPos: Int ->
+                startUserDetailActivity(userItem)
+            }
+        recyclerView.adapter = adapter
 
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)

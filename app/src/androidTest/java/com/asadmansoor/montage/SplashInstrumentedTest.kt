@@ -5,7 +5,7 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import com.asadmansoor.montage.ui.Dashboard.SplashActivity
+import com.asadmansoor.montage.view.Dashboard.SplashActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,7 +22,6 @@ class SplashInstrumentedTest {
     @Test
     fun testSplashActivityUI() {
         onView(withId(R.id.iv_splash_user)).check(matches(isDisplayed()))
-        onView(withId(R.id.vw_overlay)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_title))
             .check(matches(withText(R.string.app_name)))
     }

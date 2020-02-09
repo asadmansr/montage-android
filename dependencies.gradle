@@ -1,0 +1,58 @@
+ext {
+    // Version for App Dependencies
+    versionGradle = '3.2.1'
+    versionKotlin = '1.2.71'
+    versionAppCompat = '1.0.2'
+    versionCore = '1.0.2'
+    versionConstraintLayout = '1.1.3'
+    versionMaterial = '1.0.0'
+    versionGson = '2.8.5'
+    versionFuel = '1.6.0'
+    versionArchLifecycle = '2.2.0-rc02'
+    versionRoomRuntime = '2.2.1'
+    versionRoom = '2.2.1'
+    versionViewModel = '2.2.0-rc02'
+    versionCoroutines = '1.3.2'
+
+    // Version for Test Dependencies
+    versionJunit = '4.12'
+    versionTestRunner = '1.0.2'
+    versionTestRules = '1.0.2'
+    versionEspressoCore = '3.0.2'
+
+    // Version for Kapt
+    versionKaptLifecycle = '2.2.0-rc02'
+    versionKaptRoom = '2.2.1'
+
+
+    appDependencies = [
+            gradle          : "com.android.tools.build:gradle:$versionGradle",
+            kotlin          : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versionKotlin",
+            appCompat       : "androidx.appcompat:appcompat:$versionAppCompat",
+            core            : "androidx.core:core-ktx:$versionCore",
+            constraintLayout: "com.android.support.constraint:constraint-layout:$versionConstraintLayout",
+            material        : "com.google.android.material:material:$versionMaterial",
+            gson            : "com.google.code.gson:gson:$versionGson",
+            fuel            : "com.github.kittinunf.fuel:fuel-android:$versionFuel",
+            archLifecycle   : "androidx.lifecycle:lifecycle-extensions:$versionArchLifecycle",
+            roomRuntime     : "androidx.room:room-runtime:$versionRoomRuntime",
+            room            : "androidx.room:room-ktx:$versionRoom",
+            viewmodel       : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versionViewModel",
+            coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versionCoroutines"
+    ]
+
+    testDependencies = [
+            junit       : "junit:junit:$versionJunit",
+            testRunner  : "com.android.support.test:runner:$versionTestRunner",
+            testRules   : "com.android.support.test:rules:$versionTestRules",
+            espressoCore: "com.android.support.test.espresso:espresso-core:$versionEspressoCore",
+    ]
+
+    kaptDependencies = [
+            lifecycle: "androidx.lifecycle:lifecycle-compiler:$versionKaptLifecycle",
+            room     : "androidx.room:room-compiler:$versionKaptRoom"
+    ]
+}
+
+
+

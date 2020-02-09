@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.ui.UserGeneration
+package com.asadmansoor.montage.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.asadmansoor.montage.R
+import com.asadmansoor.montage.view.UserGeneration.UserInformationActivity
 
 class GenerateInfoAdapter (var context: Context, var infoList: ArrayList<String>, val dataList: ArrayList<String>) : BaseAdapter() {
 

@@ -1,14 +1,16 @@
-package com.asadmansoor.montage.ui.UserDetail
+package com.asadmansoor.montage.view.UserDetail
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.asadmansoor.montage.R
 import com.asadmansoor.montage.UserProperties
+import com.asadmansoor.montage.adapter.UserDetailAdapter
 import kotlinx.android.synthetic.main.activity_user_details.*
+
 
 class UserDetailActivity : AppCompatActivity() {
 
@@ -29,7 +31,8 @@ class UserDetailActivity : AppCompatActivity() {
         val imgRes = intent.getIntExtra(UserProperties.EXTRA_IMG_RES, 0)
         val colorRes = intent.getIntExtra(UserProperties.EXTRA_COLOR_RES, 0)
 
-        val adapter = UserDetailAdapter(this, titleList, contentList)
+        val adapter =
+            UserDetailAdapter(this, titleList, contentList)
         lv_user_details.adapter = adapter
 
         iv_user_image.setImageResource(UserProperties.imgResource[imgRes])
