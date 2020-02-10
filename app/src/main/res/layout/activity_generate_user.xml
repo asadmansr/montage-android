@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        tools:context=".view.Dashboard.SplashActivity">
+        tools:context=".view.splash.SplashActivity">
 
     <RelativeLayout
             android:id="@+id/picture_rl"

@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.view.UserDetail
+package com.asadmansoor.montage.view.userDetail
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -7,7 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.asadmansoor.montage.R
-import com.asadmansoor.montage.UserProperties
+import com.asadmansoor.montage.model.UserProperties
 import com.asadmansoor.montage.adapter.UserDetailAdapter
 import kotlinx.android.synthetic.main.activity_user_details.*
 

@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.view.UserGeneration
+package com.asadmansoor.montage.view.userGeneration
 
 import android.app.Activity
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.asadmansoor.montage.R
-import com.asadmansoor.montage.UserProperties
+import com.asadmansoor.montage.model.UserProperties
 import com.asadmansoor.montage.api.APIManager
 import com.asadmansoor.montage.helper.UserHelper
 import com.github.kittinunf.fuel.httpGet

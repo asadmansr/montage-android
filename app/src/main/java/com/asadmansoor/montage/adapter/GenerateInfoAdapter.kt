@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.asadmansoor.montage.R
-import com.asadmansoor.montage.view.UserGeneration.UserInformationActivity
+import com.asadmansoor.montage.view.userGeneration.UserInformationActivity
 
 class GenerateInfoAdapter (var context: Context, var infoList: ArrayList<String>, val dataList: ArrayList<String>) : BaseAdapter() {
 

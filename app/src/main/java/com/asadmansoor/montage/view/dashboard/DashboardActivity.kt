@@ -1,26 +1,24 @@
-package com.asadmansoor.montage.view.Dashboard
+package com.asadmansoor.montage.view.dashboard
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.asadmansoor.montage.R
-import com.asadmansoor.montage.UserProperties
+import com.asadmansoor.montage.model.UserProperties
 import com.asadmansoor.montage.adapter.DashboardAdapter
 import com.asadmansoor.montage.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import com.asadmansoor.montage.db.entity.User
-import com.asadmansoor.montage.view.UserGeneration.GenerateUserActivity
-import com.asadmansoor.montage.view.UserDetail.UserDetailActivity
+import com.asadmansoor.montage.view.userGeneration.GenerateUserActivity
 
 
 private const val DEFAULT = 0
@@ -34,62 +32,30 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_dashboard_user)
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        val userRecyclerView = findViewById<RecyclerView>(R.id.rv_dashboard_user)
+        val dashboardAdapter = DashboardAdapter(this){ user: User, _: Int ->
+            deleteUser(user)
+        }
+        userRecyclerView.layoutManager = LinearLayoutManager(this)
+        userRecyclerView.adapter = dashboardAdapter
 
-        var users = ArrayList<User>()
-        val adapter =
-            DashboardAdapter(users) { userItem: User, userPos: Int ->
-                startUserDetailActivity(userItem)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel.allUsers.observe(this, Observer { users ->
+            users?.let {
+                Log.d("Montage", "Observer")
+                dashboardAdapter.setUsers(it)
             }
-        recyclerView.adapter = adapter
-
-
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        userViewModel?.getUserList().observe(this, Observer { mUsers: List<User>? ->
-            users = mUsers as ArrayList<User>
-            adapter.setUsers(users)
         })
-
 
         fab_dashboard_add.setOnClickListener {
             startGenerateUserActivity()
         }
     }
 
-
     private fun startGenerateUserActivity(){
         val intent = Intent(this, GenerateUserActivity::class.java)
         startActivityForResult(intent, USER_REQUEST)
     }
-
-
-    private fun startUserDetailActivity(userItem: User){
-        val arrExtra = generateUserArray(userItem)
-        val imgExtra = userItem.imgRes
-        val colorExtra = userItem.colorRes
-
-        val intent = Intent(this, UserDetailActivity::class.java)
-        intent.putExtra(UserProperties.EXTRA_USER_ARR, arrExtra)
-        intent.putExtra(UserProperties.EXTRA_IMG_RES, imgExtra)
-        intent.putExtra(UserProperties.EXTRA_COLOR_RES, colorExtra)
-        startActivity(intent)
-    }
-
-
-    private fun generateUserArray(userItem: User): ArrayList<String>{
-        val userArr = ArrayList<String>()
-        userArr.add(userItem.name)
-        userArr.add(userItem.email)
-        userArr.add(userItem.username)
-        userArr.add(userItem.password)
-        userArr.add(userItem.phone)
-        userArr.add(userItem.city)
-        userArr.add(userItem.state)
-        userArr.add(userItem.timezone)
-        return userArr
-    }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -113,39 +79,32 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.toolbar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_delete_all -> {
-                userViewModel.deleteAllUsers()
+                userViewModel.deleteAll()
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-
     private fun deleteUser(user: User){
-        val alertDialog: AlertDialog? = this?.let {
-            val builder = AlertDialog.Builder(this)
-            builder.setMessage(R.string.dialog_message)
-            builder.setPositiveButton(R.string.dialog_positive,
-                DialogInterface.OnClickListener { dialog, id ->
-                    userViewModel.delete(user)
-                })
-            builder.setNegativeButton(R.string.dialog_negative,
-                DialogInterface.OnClickListener { dialog, id ->
-
-                })
-            builder.create()
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(R.string.dialog_message)
+        builder.setPositiveButton(R.string.dialog_positive){ _, _ ->
+            userViewModel.delete(user)
         }
-        alertDialog?.show()
+        builder.setNegativeButton(R.string.dialog_negative){ _, _ ->
+        }
+        val alert = builder.create()
+        alert.setTitle(R.string.dialog_title)
+        alert.show()
     }
 }

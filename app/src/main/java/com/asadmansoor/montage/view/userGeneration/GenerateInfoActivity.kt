@@ -1,4 +1,4 @@
-package com.asadmansoor.montage.view.UserGeneration
+package com.asadmansoor.montage.view.userGeneration
 
 import android.app.Activity
 import android.content.Intent
@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.asadmansoor.montage.R
-import com.asadmansoor.montage.UserProperties
+import com.asadmansoor.montage.model.UserProperties
 import com.asadmansoor.montage.adapter.GenerateInfoAdapter
 import com.asadmansoor.montage.api.APIManager
 import com.asadmansoor.montage.model.UserInfoAPI

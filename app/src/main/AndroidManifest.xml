@@ -11,7 +11,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true">
         <activity
-                android:name=".view.Dashboard.SplashActivity"
+                android:name=".view.splash.SplashActivity"
                 android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -19,19 +19,19 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.Dashboard.DashboardActivity"
+        <activity android:name=".view.dashboard.DashboardActivity"
                   android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".view.UserDetail.UserDetailActivity"
+        <activity android:name=".view.userDetail.UserDetailActivity"
                   android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".view.UserGeneration.GenerateUserActivity"
+        <activity android:name=".view.userGeneration.GenerateUserActivity"
                   android:theme="@style/NoActionBarTheme">
         </activity>
         <activity android:name=".view.UserContactActivity"
                   android:theme="@style/NoActionBarTheme">
         </activity>
-        <activity android:name=".view.UserGeneration.UserInformationActivity"
+        <activity android:name=".view.userGeneration.UserInformationActivity"
                   android:windowSoftInputMode="adjustPan"
                   android:theme="@style/NoActionBarTheme">
         </activity>

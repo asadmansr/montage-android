@@ -3,36 +3,32 @@ package com.asadmansoor.montage.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.asadmansoor.montage.db.repository.Repository
+import androidx.lifecycle.viewModelScope
+import com.asadmansoor.montage.db.database.UserDatabase
+import com.asadmansoor.montage.db.repository.UserRepository
 import com.asadmansoor.montage.db.entity.User
+import kotlinx.coroutines.launch
 
 
-class UserViewModel constructor (application: Application):  AndroidViewModel(application) {
-    private var repository: Repository? = null
-    private var allUsers: LiveData<List<User>>? = null
+class UserViewModel (application: Application):  AndroidViewModel(application) {
+    private val userRepository: UserRepository
+    val allUsers: LiveData<List<User>>
 
     init {
-        repository = Repository(application)
-        allUsers = repository?.getAllUsers()
+        val userDao = UserDatabase.getUserDatabase(application)!!.userDAO()
+        userRepository = UserRepository(userDao)
+        allUsers = userRepository.allUsers
     }
 
-    fun insert(user: User){
-        repository?.insert(user)
+    fun insert(user: User) = viewModelScope.launch {
+        userRepository.insert(user)
     }
 
-    fun update(user: User){
-        repository?.update(user)
+    fun delete(user: User) = viewModelScope.launch {
+        userRepository.delete(user)
     }
 
-    fun delete(user: User){
-        repository?.delete(user)
-    }
-
-    fun deleteAllUsers(){
-        repository?.deleteAllUsers()
-    }
-
-    fun getUserList() : LiveData<List<User>>{
-        return allUsers!!
+    fun deleteAll() = viewModelScope.launch {
+        userRepository.deleteAll()
     }
 }

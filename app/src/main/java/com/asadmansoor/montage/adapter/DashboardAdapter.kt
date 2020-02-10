@@ -1,50 +1,57 @@
 package com.asadmansoor.montage.adapter
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.asadmansoor.montage.R
-import com.asadmansoor.montage.UserProperties
 import com.asadmansoor.montage.db.entity.User
+import com.asadmansoor.montage.model.UserProperties
 
 
-class DashboardAdapter (var userList: ArrayList<User>, val clickListener: (User, Int) -> Unit) : RecyclerView.Adapter<DashboardAdapter.ViewHolder>() {
+class DashboardAdapter internal constructor(
+    context: Context,
+    val clickListener: (User, Int) -> Unit
+) : RecyclerView.Adapter<DashboardAdapter.UserViewHolder>() {
+    private val inflater: LayoutInflater = LayoutInflater.from(context)
+    private var users = emptyList<User>()
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
-        val v = LayoutInflater.from(p0?.context).inflate(R.layout.layout_list_user, p0, false)
-        return ViewHolder(v)
+    inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val viewContainer: RelativeLayout = itemView.findViewById(R.id.rl_container)
+        val userImage: ImageView = itemView.findViewById(R.id.iv_recycler_user)
+        val userName: TextView = itemView.findViewById(R.id.tv_recycler_name)
     }
 
-    override fun getItemCount(): Int {
-        return userList.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+        val itemView = inflater.inflate(R.layout.layout_list_user, parent, false)
+        return UserViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        val user: User = userList[p1]
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        val currentUser = users[position]
 
-        p0.userName.text = user.name
-        p0.userImage.setImageResource(UserProperties.imgResource[user.imgRes])
+        holder.userName.text = currentUser.name
+        holder.userImage.setImageResource(UserProperties.imgResource[currentUser.imgRes])
 
-        val userImageRef = p0.userImage.background as GradientDrawable
-        userImageRef.setColor(Color.parseColor(UserProperties.colorResource[user.colorRes]))
+        val userImageRef = holder.userImage.background as GradientDrawable
+        userImageRef.setColor(Color.parseColor(UserProperties.colorResource[currentUser.colorRes]))
 
-        p0.viewContainer.setOnClickListener { clickListener(user, p1) }
+        holder.viewContainer.setOnClickListener {
+            clickListener(currentUser, position)
+        }
     }
 
-    fun setUsers(users: List<User>){
-        userList = users as ArrayList<User>
+    internal fun setUsers(users: List<User>) {
+        this.users = users
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val viewContainer = itemView.findViewById(R.id.rl_container) as RelativeLayout
-        val userImage = itemView.findViewById(R.id.iv_recycler_user) as ImageView
-        val userName = itemView.findViewById(R.id.tv_recycler_name) as TextView
-    }
+    override fun getItemCount() = users.size
 }
